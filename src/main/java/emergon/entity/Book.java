@@ -28,7 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b")
     , @NamedQuery(name = "Book.findById", query = "SELECT b FROM Book b WHERE b.id = :id")
-    , @NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title")})
+    , @NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title")
+    , @NamedQuery(name = "Book.findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :id")})
 public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,7 +42,7 @@ public class Book implements Serializable {
     private String title;
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     @ManyToOne
-    private Author authorId;
+    private Author author;
 
     public Book() {
     }
@@ -66,12 +67,12 @@ public class Book implements Serializable {
         this.title = title;
     }
 
-    public Author getAuthorId() {
-        return authorId;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(Author authorId) {
-        this.authorId = authorId;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     @Override
